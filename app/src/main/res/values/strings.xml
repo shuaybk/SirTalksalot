@@ -6,4 +6,8 @@
     <string name="sign_in_message">Click here to sign in or register!</string>
     <string name="sign_in_failed_message">Unable to sign in</string>
 
+    <!-- Button text -->
+    <string name="sign_out_menu_text">Sign Out</string>
+    <string name="add_contact_menu_text">Add Contact</string>
+
 </resources>
