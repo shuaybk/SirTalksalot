@@ -3,6 +3,8 @@ package com.shuaybk.sirtalksalot;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,23 +22,18 @@ import com.shuaybk.sirtalksalot.databinding.ActivityChatBinding;
 
 public class ChatActivity extends AppCompatActivity {
 
+    private final String TAG = this.getClass().getSimpleName();
+
     private ActivityChatBinding mBinding;
-    private FirebaseAuth fbAuth;
+    private ChatViewModel model;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_chat);
-        fbAuth = FirebaseAuth.getInstance();
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        FirebaseUser currUser = fbAuth.getCurrentUser();
-        mBinding.usernameText.setText("User is: uid=" + currUser.getUid() + ", display name = " + currUser.getDisplayName());
+        model = new ViewModelProvider(this).get(ChatViewModel.class);
+        mBinding.usernameText.setText("User is: uid=" + model.getUser().getUid() + ", display name = " + model.getUser().getDisplayName());
     }
 
     @Override
@@ -49,22 +46,20 @@ public class ChatActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
-        if (item.getItemId() == R.id.sign_out_menu_item) {
-            signOut();
-            return true;
+        switch (item.getItemId()) {
+            case R.id.sign_out_menu_item:
+                model.signOut(this);
+                return true;
+            case R.id.add_contact_menu_item:
+                addContact();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-
-        return super.onOptionsItemSelected(item);
     }
 
-    private void signOut() {
-        //Display loading UI here!
-        AuthUI.getInstance().signOut(this).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                Intent intent = new Intent(ChatActivity.this, MainActivity.class);
-                startActivity(intent);
-            }
-        });
+    private void addContact() {
+
     }
+
 }

@@ -19,6 +19,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    private final String TAG = this.getClass().getSimpleName();
+
     private static final int RC_SIGN_IN = 1;
 
     private ActivityMainBinding mBinding;
