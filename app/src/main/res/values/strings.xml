@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">SirTalksalot</string>
+
+
+    <!-- Display messages -->
+    <string name="sign_in_message">Click here to sign in or register!</string>
+    <string name="sign_in_failed_message">Unable to sign in</string>
+
+</resources>
