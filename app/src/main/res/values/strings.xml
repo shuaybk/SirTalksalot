@@ -9,5 +9,11 @@
     <!-- Button text -->
     <string name="sign_out_menu_text">Sign Out</string>
     <string name="add_contact_menu_text">Add Contact</string>
+    <string name="cancel_button">Cancel</string>
+    <string name="add_button">Add</string>
+
+    <!-- Misc -->
+    <string name="email_contact_label">Email</string>
+    <string name="email_contact_hint">Enter email</string>
 
 </resources>

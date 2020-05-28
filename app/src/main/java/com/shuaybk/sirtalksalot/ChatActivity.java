@@ -18,11 +18,13 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.shuaybk.sirtalksalot.Fragments.AddContactDialogFragment;
 import com.shuaybk.sirtalksalot.databinding.ActivityChatBinding;
 
 public class ChatActivity extends AppCompatActivity {
 
     private final String TAG = this.getClass().getSimpleName();
+    private final String ADD_CONTACT_TAG = "add contact";
 
     private ActivityChatBinding mBinding;
     private ChatViewModel model;
@@ -59,7 +61,8 @@ public class ChatActivity extends AppCompatActivity {
     }
 
     private void addContact() {
-
+        AddContactDialogFragment dialog = new AddContactDialogFragment();
+        dialog.show(getSupportFragmentManager(), ADD_CONTACT_TAG);
     }
 
 }
