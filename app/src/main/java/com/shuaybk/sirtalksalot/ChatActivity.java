@@ -12,6 +12,7 @@ import android.provider.ContactsContract;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -21,7 +22,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.shuaybk.sirtalksalot.Fragments.AddContactDialogFragment;
 import com.shuaybk.sirtalksalot.databinding.ActivityChatBinding;
 
-public class ChatActivity extends AppCompatActivity {
+public class ChatActivity extends AppCompatActivity
+        implements AddContactDialogFragment.AddContactDialogListener {
 
     private final String TAG = this.getClass().getSimpleName();
     private final String ADD_CONTACT_TAG = "add contact";
@@ -65,4 +67,18 @@ public class ChatActivity extends AppCompatActivity {
         dialog.show(getSupportFragmentManager(), ADD_CONTACT_TAG);
     }
 
+
+    @Override
+    public void onAddContactPressed(String email) {
+        Toast.makeText(this, "Adding " + email, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onCancelPressed() {
+        ((AddContactDialogFragment)getSupportFragmentManager().findFragmentByTag(ADD_CONTACT_TAG)).dismiss();
+    }
+
+    @Override
+    public void onDismissed() {
+    }
 }
